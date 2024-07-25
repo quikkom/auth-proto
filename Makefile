@@ -1,13 +1,11 @@
 PROTO_FILES		= auth.proto
 
 go:
-	mkdir -p dist/go
-	protoc	--go_out=dist/go --go_opt=paths=source_relative \
-			--go-grpc_out=dist/go --go-grpc_opt=paths=source_relative \
-			$(PROTO_FILES)
+	protoc --go_out=. --go_opt=paths=source_relative $(PROTO_FILES)
 
 clean-go:
-	rm -rf dist/go
+	rm -rf *.go
 
-clean:
-	rm -rf dist
+clean: clean-go
+
+re: clean go
